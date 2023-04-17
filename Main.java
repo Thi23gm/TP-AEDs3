@@ -208,7 +208,7 @@ public class Main {
           break;
         case 6:
           arvore.printBTree();
-          System.out.println("\nARVORE SALVA NA: \"saida.txt\"!");
+          System.out.println("\nARVORE SALVA NA: \"saidaBTree.txt\"!");
           break;
         case 7:
           System.out.println(
@@ -366,7 +366,7 @@ public class Main {
           break;
         case 6:
           hash.print();
-          System.out.println("\nTABELA HASH SALVA NA: \"saida.txt\"!");
+          System.out.println("\nTABELA HASH SALVA NA: \"saidaHash.txt\"!");
           break;
         case 7:
           System.out.println(
