@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Main {
 
-  //Scanner
+  // Scanner
   static Scanner sc = new Scanner(System.in);
 
   // Define o método registrarFilme
@@ -69,18 +69,17 @@ public class Main {
 
     // Cria um objeto filme com os dados lidos
     filme f = new filme(
-      type,
-      name,
-      director,
-      stringToArray(cast),
-      country,
-      date,
-      yaer,
-      rating,
-      duration,
-      stringToArray(geners),
-      description
-    );
+        type,
+        name,
+        director,
+        stringToArray(cast),
+        country,
+        date,
+        yaer,
+        rating,
+        duration,
+        stringToArray(geners),
+        description);
 
     // Retorna o objeto filme criado
     return f;
@@ -90,43 +89,42 @@ public class Main {
   public static void printFilme(filme f) {
     // Imprime na tela os dados do filme passado como parâmetro
     System.out.println(
-      "ID: " +
-      f.getId() +
-      "\n" +
-      "NOME: " +
-      f.getName() +
-      "\n" +
-      "TIPO: " +
-      f.getType() +
-      "\n" +
-      "DIRETOR: " +
-      f.getDirector() +
-      "\n" +
-      "ELENCO: " +
-      Arrays.toString(f.getCast()) +
-      "\n" +
-      "PAIS: " +
-      f.getCountry() +
-      "\n" +
-      "DATA DE LANÇAMENTO: " +
-      f.getDateAdded() +
-      "\n" +
-      "ANO DE LANÇAMENTO: " +
-      f.getReleaseYear() +
-      "\n" +
-      "AVALIAÇÂO: " +
-      f.getRating() +
-      "\n" +
-      "DURAÇÂO: " +
-      f.getDuration() +
-      "\n" +
-      "GENEROS: " +
-      Arrays.toString(f.getGenres()) +
-      "\n" +
-      "DESCRIÇÃO: " +
-      f.getDescription() +
-      "\n"
-    );
+        "ID: " +
+            f.getId() +
+            "\n" +
+            "NOME: " +
+            f.getName() +
+            "\n" +
+            "TIPO: " +
+            f.getType() +
+            "\n" +
+            "DIRETOR: " +
+            f.getDirector() +
+            "\n" +
+            "ELENCO: " +
+            Arrays.toString(f.getCast()) +
+            "\n" +
+            "PAIS: " +
+            f.getCountry() +
+            "\n" +
+            "DATA DE LANÇAMENTO: " +
+            f.getDateAdded() +
+            "\n" +
+            "ANO DE LANÇAMENTO: " +
+            f.getReleaseYear() +
+            "\n" +
+            "AVALIAÇÂO: " +
+            f.getRating() +
+            "\n" +
+            "DURAÇÂO: " +
+            f.getDuration() +
+            "\n" +
+            "GENEROS: " +
+            Arrays.toString(f.getGenres()) +
+            "\n" +
+            "DESCRIÇÃO: " +
+            f.getDescription() +
+            "\n");
   }
 
   private static String[] stringToArray(String s) {
@@ -143,24 +141,23 @@ public class Main {
           arvore.insert(f);
           if (status) {
             System.out.println(
-              "O REGISTRO FOI INCLUIDO COM SUCESSO COM O ID: " + f.getId() + "!"
-            ); // mensagem de sucesso ao incluir registro
+                "O REGISTRO FOI INCLUIDO COM SUCESSO COM O ID: " + f.getId() + "!"); // mensagem de sucesso ao incluir
+                                                                                     // registro
           } else {
             System.out.println(
-              "NÃO FOI POSSIVEL INCLUIR O REGISTRO NO BANCO DE DADOS!"
-            ); // mensagem de erro ao incluir registro
+                "NÃO FOI POSSIVEL INCLUIR O REGISTRO NO BANCO DE DADOS!"); // mensagem de erro ao incluir registro
           }
           break;
         case 2:
           System.out.print("DIGITE O CAMINHO DO ARQUIVO CSV: "); // Caminho do arquivo CSV
           String path;
           path = sc.next();
-          arquivo.createStruct(path, arvore); // fazer a leitura e a transformação para objeto salvanco no banco como array de bytes
+          arquivo.createStruct(path, arvore); // fazer a leitura e a transformação para objeto salvanco no banco como
+                                              // array de bytes
           System.out.println(
-            "FORAM IMPORTADOS " +
-            (arquivo.getCont()) +
-            " REGISTROS COM SUCESSO!"
-          );
+              "FORAM IMPORTADOS " +
+                  (arquivo.getCont()) +
+                  " REGISTROS COM SUCESSO!");
           break;
         case 3:
           int id = 0;
@@ -183,15 +180,13 @@ public class Main {
           resp = arquivo.update(aux1, x1);
           if (resp == true) {
             System.out.println(
-              "\nREGISTRO ATUALIZADO COM SUCESSO!" +
-              "\n" +
-              "NOVO ID: " +
-              aux1.getId()
-            );
+                "\nREGISTRO ATUALIZADO COM SUCESSO!" +
+                    "\n" +
+                    "NOVO ID: " +
+                    aux1.getId());
           } else {
             System.out.println(
-              "NÃO FOI POSSIVEL ATUALIZAR O REGISTRO DESEJADO!"
-            );
+                "NÃO FOI POSSIVEL ATUALIZAR O REGISTRO DESEJADO!");
           }
           break;
         case 5:
@@ -212,38 +207,31 @@ public class Main {
           break;
         case 7:
           System.out.println(
-            "DIGITE A QUNTIDADE DE REGISTROS QUE DESEJA ORDENAR POR VEZ: "
-          );
+              "DIGITE A QUNTIDADE DE REGISTROS QUE DESEJA ORDENAR POR VEZ: ");
           int blockSize = sc.nextInt();
           System.out.println(
-            "DIGITE A QUNTIDADE DE ARQUIVOS QUE SERA CRIADO: "
-          );
+              "DIGITE A QUNTIDADE DE ARQUIVOS QUE SERA CRIADO: ");
           int num = sc.nextInt();
           ordenacaoExterna.balanceadaComum(blockSize, num);
           System.out.println("SAIDA SALVA NO ARQUIVO: \"saidaOrdenada.txt\"!");
           break;
         case 8:
           System.out.println(
-            "QUAL TIPO DE PALAVRA CHAVE QUE VOCE DESEJA PESQUISAR:\n1 - TIPO ( Serie ou Filme )\n2 - GENEROS"
-          );
+              "QUAL TIPO DE PALAVRA CHAVE QUE VOCE DESEJA PESQUISAR:\n1 - TIPO ( Serie ou Filme )\n2 - GENEROS");
           int op = sc.nextInt();
           if (op == 1) {
             System.out.print("QUAL TIPO VOCE DESEJA PESQUISAR: ");
             String tipo = sc.nextLine();
             tipo = sc.nextLine();
-            if (
-              tipo == "Serie" ||
-              tipo == "serie" ||
-              tipo == "Series" ||
-              tipo == "series"
-            ) {
+            if (tipo == "Serie" ||
+                tipo == "serie" ||
+                tipo == "Series" ||
+                tipo == "series") {
               tipo = "TV Show";
-            } else if (
-              tipo == "Filme" ||
-              tipo == "filme" ||
-              tipo == "Filmes" ||
-              tipo == "filmes"
-            ) {
+            } else if (tipo == "Filme" ||
+                tipo == "filme" ||
+                tipo == "Filmes" ||
+                tipo == "filmes") {
               tipo = "Movie";
             }
             List<filme> list = arquivo.listType.search(tipo);
@@ -261,12 +249,11 @@ public class Main {
                   System.out.println("ENCONTRADO 0 REGISTROS!");
                 } else {
                   System.out.println(
-                    "\n" +
-                    list.size() +
-                    " REGISTROS ENCONTRADOS DO GENERO " +
-                    array[i] +
-                    ": "
-                  );
+                      "\n" +
+                          list.size() +
+                          " REGISTROS ENCONTRADOS DO GENERO " +
+                          array[i] +
+                          ": ");
                   arquivo.printList(list, array[i]);
                   System.out.println();
                 }
@@ -277,8 +264,7 @@ public class Main {
                 System.out.println("ENCONTRADO 0 REGISTROS!");
               } else {
                 System.out.println(
-                  "\n" + list.size() + " REGISTROS ENCONTRADOS: "
-                );
+                    "\n" + list.size() + " REGISTROS ENCONTRADOS: ");
                 arquivo.printList(list, genero);
               }
             }
@@ -288,7 +274,8 @@ public class Main {
         default:
           throw new InputMismatchException(entrada + " NÃO É VALIDO.");
       }
-    } catch (Exception e) {}
+    } catch (Exception e) {
+    }
   }
 
   public static void menu(int entrada, HashDinamico hash) {
@@ -300,24 +287,23 @@ public class Main {
           hash.set(f);
           if (status) {
             System.out.println(
-              "O REGISTRO FOI INCLUIDO COM SUCESSO COM O ID: " + f.getId() + "!"
-            ); // mensagem de sucesso ao incluir registro
+                "O REGISTRO FOI INCLUIDO COM SUCESSO COM O ID: " + f.getId() + "!"); // mensagem de sucesso ao incluir
+                                                                                     // registro
           } else {
             System.out.println(
-              "NÃO FOI POSSIVEL INCLUIR O REGISTRO NO BANCO DE DADOS!"
-            ); // mensagem de erro ao incluir registro
+                "NÃO FOI POSSIVEL INCLUIR O REGISTRO NO BANCO DE DADOS!"); // mensagem de erro ao incluir registro
           }
           break;
         case 2:
           System.out.print("DIGITE O CAMINHO DO ARQUIVO CSV: "); // Caminho do arquivo CSV
           String path;
           path = sc.next();
-          arquivo.createStruct(path, hash); // fazer a leitura e a transformação para objeto salvanco no banco como array de bytes
+          arquivo.createStruct(path, hash); // fazer a leitura e a transformação para objeto salvanco no banco como
+                                            // array de bytes
           System.out.println(
-            "FORAM IMPORTADOS " +
-            (arquivo.getCont()) +
-            " REGISTROS COM SUCESSO!"
-          );
+              "FORAM IMPORTADOS " +
+                  (arquivo.getCont()) +
+                  " REGISTROS COM SUCESSO!");
           break;
         case 3:
           int id = 0;
@@ -341,15 +327,13 @@ public class Main {
           resp = arquivo.update(aux1, x1);
           if (resp == true) {
             System.out.println(
-              "\nREGISTRO ATUALIZADO COM SUCESSO!" +
-              "\n" +
-              "NOVO ID: " +
-              aux1.getId()
-            );
+                "\nREGISTRO ATUALIZADO COM SUCESSO!" +
+                    "\n" +
+                    "NOVO ID: " +
+                    aux1.getId());
           } else {
             System.out.println(
-              "NÃO FOI POSSIVEL ATUALIZAR O REGISTRO DESEJADO!"
-            );
+                "NÃO FOI POSSIVEL ATUALIZAR O REGISTRO DESEJADO!");
           }
           break;
         case 5:
@@ -370,38 +354,31 @@ public class Main {
           break;
         case 7:
           System.out.println(
-            "DIGITE A QUNTIDADE DE REGISTROS QUE DESEJA ORDENAR POR VEZ: "
-          );
+              "DIGITE A QUNTIDADE DE REGISTROS QUE DESEJA ORDENAR POR VEZ: ");
           int blockSize = sc.nextInt();
           System.out.println(
-            "DIGITE A QUNTIDADE DE ARQUIVOS QUE SERA CRIADO: "
-          );
+              "DIGITE A QUNTIDADE DE ARQUIVOS QUE SERA CRIADO: ");
           int num = sc.nextInt();
           ordenacaoExterna.balanceadaComum(blockSize, num);
           System.out.println("SAIDA SALVA NO ARQUIVO: \"saidaOrdenada.txt\"!");
           break;
         case 8:
           System.out.println(
-            "QUAL TIPO DE PALAVRA CHAVE QUE VOCE DESEJA PESQUISAR:\n1 - TIPO ( Serie ou Filme )\n2 - GENEROS"
-          );
+              "QUAL TIPO DE PALAVRA CHAVE QUE VOCE DESEJA PESQUISAR:\n1 - TIPO ( Serie ou Filme )\n2 - GENEROS");
           int op = sc.nextInt();
           if (op == 1) {
             System.out.print("QUAL TIPO VOCE DESEJA PESQUISAR: ");
             String tipo = sc.nextLine();
             tipo = sc.nextLine();
-            if (
-              tipo == "Serie" ||
-              tipo == "serie" ||
-              tipo == "Series" ||
-              tipo == "series"
-            ) {
+            if (tipo == "Serie" ||
+                tipo == "serie" ||
+                tipo == "Series" ||
+                tipo == "series") {
               tipo = "TV Show";
-            } else if (
-              tipo == "Filme" ||
-              tipo == "filme" ||
-              tipo == "Filmes" ||
-              tipo == "filmes"
-            ) {
+            } else if (tipo == "Filme" ||
+                tipo == "filme" ||
+                tipo == "Filmes" ||
+                tipo == "filmes") {
               tipo = "Movie";
             }
             List<filme> list = arquivo.listType.search(tipo);
@@ -419,12 +396,11 @@ public class Main {
                   System.out.println("ENCONTRADO 0 REGISTROS!");
                 } else {
                   System.out.println(
-                    "\n" +
-                    list.size() +
-                    " REGISTROS ENCONTRADOS DO GENERO " +
-                    array[i] +
-                    ": "
-                  );
+                      "\n" +
+                          list.size() +
+                          " REGISTROS ENCONTRADOS DO GENERO " +
+                          array[i] +
+                          ": ");
                   arquivo.printList(list, array[i]);
                   System.out.println();
                 }
@@ -435,18 +411,27 @@ public class Main {
                 System.out.println("ENCONTRADO 0 REGISTROS!");
               } else {
                 System.out.println(
-                  "\n" + list.size() + " REGISTROS ENCONTRADOS: "
-                );
+                    "\n" + list.size() + " REGISTROS ENCONTRADOS: ");
                 arquivo.printList(list, genero);
               }
             }
           }
 
           break;
+
+        case 9:
+          try (BufferedReader br = new BufferedReader(new FileReader("Banco/DB.db"))) {
+            String line = br.readLine();
+            System.out.println(line);
+          } catch (IOException e) {
+            System.err.format("IOException: %s%n", e);
+          }
+          break;
         default:
           throw new InputMismatchException(entrada + " NÃO É VALIDO.");
       }
-    } catch (Exception e) {}
+    } catch (Exception e) {
+    }
   }
 
   public static void main(String[] args) throws IOException {
@@ -455,20 +440,16 @@ public class Main {
     int entrada = 0;
     try {
       System.out.println(
-        "============================================================="
-      );
+          "=============================================================");
       System.out.println(
-        "=                   REGISTROS DA NETFLIX                    ="
-      );
+          "=                   REGISTROS DA NETFLIX                    =");
       System.out.println(
-        "============================================================="
-      );
+          "=============================================================");
       Thread.sleep(1000);
       running = true;
 
       System.out.println(
-        "QUE TIPO DE ARQUIVO DE INDICES VOCE DESEJA IMPLEMENTAR: "
-      );
+          "QUE TIPO DE ARQUIVO DE INDICES VOCE DESEJA IMPLEMENTAR: ");
       System.out.println("1 - ARVORE B");
       System.out.println("2 - HASH DINAMICO");
       System.out.println("0 - SAIR");
@@ -480,14 +461,11 @@ public class Main {
         while (running) {
           try {
             System.out.println(
-              "============================================================="
-            );
+                "=============================================================");
             System.out.println(
-              "=                   REGISTROS DA NETFLIX                    ="
-            );
+                "=                   REGISTROS DA NETFLIX                    =");
             System.out.println(
-              "============================================================="
-            );
+                "=============================================================");
             System.out.println("1 - INCLUIR REGISTRO MANUALMENTE");
             System.out.println("2 - INCLUIR REGISTROS COM ARQUIVO CSV");
             System.out.println("3 - REMOVER REGISTRO");
@@ -498,10 +476,12 @@ public class Main {
             System.out.println("8 - LISTA INVERTIDA");
             System.out.println("0 - SAIR");
             entrada = sc.nextInt();
-            if (entrada != 0) menu(entrada, arvore); else running = false;
+            if (entrada != 0)
+              menu(entrada, arvore);
+            else
+              running = false;
             System.out.println(
-              "\n---------------------------------------------------------------"
-            );
+                "\n---------------------------------------------------------------");
           } catch (Exception e) {
             System.err.println("ERRO NA INTERFACE DO USUARIO");
             e.printStackTrace();
@@ -514,14 +494,11 @@ public class Main {
         while (running) {
           try {
             System.out.println(
-              "============================================================="
-            );
+                "=============================================================");
             System.out.println(
-              "=                   REGISTROS DA NETFLIX                    ="
-            );
+                "=                   REGISTROS DA NETFLIX                    =");
             System.out.println(
-              "============================================================="
-            );
+                "=============================================================");
             System.out.println("1 - INCLUIR REGISTRO MANUALMENTE");
             System.out.println("2 - INCLUIR REGISTROS COM ARQUIVO CSV");
             System.out.println("3 - REMOVER REGISTRO");
@@ -532,10 +509,12 @@ public class Main {
             System.out.println("8 - LISTA INVERTIDA");
             System.out.println("0 - SAIR");
             entrada = sc.nextInt();
-            if (entrada != 0) menu(entrada, hash); else running = false;
+            if (entrada != 0)
+              menu(entrada, hash);
+            else
+              running = false;
             System.out.println(
-              "\n---------------------------------------------------------------"
-            );
+                "\n---------------------------------------------------------------");
           } catch (Exception e) {
             System.err.println("ERRO NA INTERFACE DO USUARIO");
             e.printStackTrace();
