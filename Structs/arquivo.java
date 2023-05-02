@@ -15,7 +15,7 @@ public class arquivo {
      * manipulação do arquivo.
      */
     public static void inicializarArquivo() throws IOException {
-        RandomAccessFile arq = new RandomAccessFile("Banco/DB.db", "rw");// Abre o arquivo para escrita.
+        RandomAccessFile arq = new RandomAccessFile("Banco/DB.bin", "rw");// Abre o arquivo para escrita.
         arq.seek(0);// Move o ponteiro para o início do arquivo.
         ByteArrayOutputStream baos = new ByteArrayOutputStream();// Cria um objeto ByteArrayOutputStream que permite
                                                                  // gravar dados na memória.
@@ -381,7 +381,7 @@ public class arquivo {
     public static Boolean salvarRegistro(filme f) throws IOException {
         boolean resp = true;
         byte[] ba;
-        RandomAccessFile arq = new RandomAccessFile("Banco/DB.db", "rw");// Abre o arquivo para escrita.
+        RandomAccessFile arq = new RandomAccessFile("Banco/DB.bin", "rw");// Abre o arquivo para escrita.
         arq.seek(arq.length());// coloca o ponteiro na ultima posição do aquivo
         ba = toByteArray(f); // transforma o filme em um array de bytes
         arq.writeInt(ba.length); // Tamano do registro em bytes
@@ -402,7 +402,7 @@ public class arquivo {
         arvore.insert(f);
         boolean resp = true;
         byte[] ba;
-        RandomAccessFile arq = new RandomAccessFile("Banco/DB.db", "rw");// Abre o arquivo para escrita.
+        RandomAccessFile arq = new RandomAccessFile("Banco/DB.bin", "rw");// Abre o arquivo para escrita.
         arq.seek(arq.length());// coloca o ponteiro na ultima posição do aquivo
         ba = toByteArray(f); // transforma o filme em um array de bytes
         arq.writeInt(ba.length); // Tamano do registro em bytes
@@ -432,7 +432,7 @@ public class arquivo {
     }
 
     public static int getCont() throws IOException {
-        FileInputStream arquivo = new FileInputStream("Banco/DB.db");// Abre o arquivo para leitura.
+        FileInputStream arquivo = new FileInputStream("Banco/DB.bin");// Abre o arquivo para leitura.
         DataInputStream leitor = new DataInputStream(arquivo);
 
         int valor = leitor.readInt();// lê 4 bytes de um inteiro (Cabeçalho) da quantidade de registros q contem no
@@ -445,7 +445,7 @@ public class arquivo {
     public static filme select(int x) throws IOException {
         int tamanhoRegistro, id;
         boolean lapide;
-        RandomAccessFile arq = new RandomAccessFile("Banco/DB.db", "rw");// Abre o arquivo para leitura.
+        RandomAccessFile arq = new RandomAccessFile("Banco/DB.bin", "rw");// Abre o arquivo para leitura.
 
         arq.seek(4);// pular os 4 bytes do cabeçalho do registro
 
@@ -542,7 +542,7 @@ public class arquivo {
     public static boolean delete(int x) throws IOException {
         int tamanhoRegistro, id;
         boolean lapide;
-        RandomAccessFile arq = new RandomAccessFile("Banco/DB.db", "rw");// abrir arquivo para leitura.
+        RandomAccessFile arq = new RandomAccessFile("Banco/DB.bin", "rw");// abrir arquivo para leitura.
 
         arq.seek(4);// pular os 4 bytes do cabeçalho do registro
 
@@ -579,7 +579,7 @@ public class arquivo {
     public static void listarRegistros() throws IOException {
         int tamanhoRegistro, id;
         boolean lapide;
-        RandomAccessFile arq = new RandomAccessFile("Banco/DB.db", "rw");// arbrir arquivo para leitura.
+        RandomAccessFile arq = new RandomAccessFile("Banco/DB.bin", "rw");// arbrir arquivo para leitura.
 
         arq.seek(4);// pular os 4 bytes do cabeçalho do registro
 

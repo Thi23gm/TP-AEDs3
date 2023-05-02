@@ -420,13 +420,22 @@ public class Main {
           break;
 
         case 9:
-          try (BufferedReader br = new BufferedReader(new FileReader("Banco/DB.db"))) {
-            String line = br.readLine();
-            System.out.println(line);
-          } catch (IOException e) {
-            System.err.format("IOException: %s%n", e);
+          System.out.println("DIGITE QUAL METODO VOCÊ QUER COMPACTAR:");
+          System.out.println("1 - LZW");
+          System.out.println("2 - HUFFMAN");
+          int op3 = sc.nextInt();
+          switch (op3) {
+            case 1:
+              // chamar codigo para o LZW
+              break;
+            case 2:
+              // chamar codigo para o HUFFMAN
+              break;
+            default:
+              throw new InputMismatchException(op3 + " NÃO É VALIDO.");
           }
           break;
+
         default:
           throw new InputMismatchException(entrada + " NÃO É VALIDO.");
       }
@@ -474,6 +483,7 @@ public class Main {
             System.out.println("6 - IMPRIMIR AQUIVO INDEXADO");
             System.out.println("7 - ORDENAÇÃO EXTERNA");
             System.out.println("8 - LISTA INVERTIDA");
+            System.out.println("9 - COMPACTAR BANCO");
             System.out.println("0 - SAIR");
             entrada = sc.nextInt();
             if (entrada != 0)
@@ -507,6 +517,7 @@ public class Main {
             System.out.println("6 - IMPRIMIR AQUIVO INDEXADO");
             System.out.println("7 - ORDENAÇÃO EXTERNA");
             System.out.println("8 - LISTA INVERTIDA");
+            System.out.println("9 - COMPACTAR BANCO");
             System.out.println("0 - SAIR");
             entrada = sc.nextInt();
             if (entrada != 0)
