@@ -271,6 +271,24 @@ public class Main {
           }
 
           break;
+
+        case 9:
+          System.out.println("DIGITE QUAL METODO VOCÊ QUER COMPACTAR:");
+          System.out.println("1 - LZW");
+          System.out.println("2 - HUFFMAN");
+          int op3 = sc.nextInt();
+          switch (op3) {
+            case 1:
+              // chamar codigo para o LZW
+              break;
+            case 2:
+              // chamar codigo para o HUFFMAN
+              break;
+            default:
+              throw new InputMismatchException(op3 + " NÃO É VALIDO.");
+          }
+          break;
+
         default:
           throw new InputMismatchException(entrada + " NÃO É VALIDO.");
       }
