@@ -3,6 +3,8 @@ import Structs.HashDinamico;
 import Structs.arquivo;
 import Structs.filme;
 import Structs.ordenacaoExterna;
+import Structs.Compressao.LZW;
+
 import java.io.*;
 import java.util.*;
 
@@ -279,7 +281,10 @@ public class Main {
           int op3 = sc.nextInt();
           switch (op3) {
             case 1:
-              // chamar codigo para o LZW
+              long tempoInicial = System.currentTimeMillis();
+              LZW.compress();
+              System.out
+                  .println("TEMPO TOTAL: \t" + (System.currentTimeMillis() - tempoInicial) + "ms");
               break;
             case 2:
               // chamar codigo para o HUFFMAN
@@ -287,6 +292,14 @@ public class Main {
             default:
               throw new InputMismatchException(op3 + " NÃO É VALIDO.");
           }
+          break;
+
+        case 10:
+          System.out.println("DIGITE A VERSÃO DO BANCO QUE DESEJA DESCOMPACTAR:");
+          int versionUser = sc.nextInt();
+          long tempoInicial2 = System.currentTimeMillis();
+          LZW.decompress(versionUser);
+          System.out.println("TEMPO TOTAL: \t" + (System.currentTimeMillis() - tempoInicial2) + "ms");
           break;
 
         default:
@@ -444,7 +457,10 @@ public class Main {
           int op3 = sc.nextInt();
           switch (op3) {
             case 1:
-              // chamar codigo para o LZW
+              long tempoInicial = System.currentTimeMillis();
+              LZW.compress();
+              System.out
+                  .println("TEMPO TOTAL: \t" + (System.currentTimeMillis() - tempoInicial) + "ms");
               break;
             case 2:
               // chamar codigo para o HUFFMAN
@@ -452,6 +468,14 @@ public class Main {
             default:
               throw new InputMismatchException(op3 + " NÃO É VALIDO.");
           }
+          break;
+
+        case 10:
+          System.out.println("DIGITE A VERSÃO DO BANCO QUE DESEJA DESCOMPACTAR:");
+          int versionUser = sc.nextInt();
+          long tempoInicial2 = System.currentTimeMillis();
+          LZW.decompress(versionUser);
+          System.out.println("TEMPO TOTAL: \t" + (System.currentTimeMillis() - tempoInicial2) + "ms");
           break;
 
         default:
@@ -493,16 +517,17 @@ public class Main {
                 "=                   REGISTROS DA NETFLIX                    =");
             System.out.println(
                 "=============================================================");
-            System.out.println("1 - INCLUIR REGISTRO MANUALMENTE");
-            System.out.println("2 - INCLUIR REGISTROS COM ARQUIVO CSV");
-            System.out.println("3 - REMOVER REGISTRO");
-            System.out.println("4 - ATUALIZAR REGISTRO");
-            System.out.println("5 - PESQUISAR REGISTRO");
-            System.out.println("6 - IMPRIMIR AQUIVO INDEXADO");
-            System.out.println("7 - ORDENAÇÃO EXTERNA");
-            System.out.println("8 - LISTA INVERTIDA");
-            System.out.println("9 - COMPACTAR BANCO");
-            System.out.println("0 - SAIR");
+            System.out.println("1 -  INCLUIR REGISTRO MANUALMENTE");
+            System.out.println("2 -  INCLUIR REGISTROS COM ARQUIVO CSV");
+            System.out.println("3 -  REMOVER REGISTRO");
+            System.out.println("4 -  ATUALIZAR REGISTRO");
+            System.out.println("5 -  PESQUISAR REGISTRO");
+            System.out.println("6 -  IMPRIMIR AQUIVO INDEXADO");
+            System.out.println("7 -  ORDENAÇÃO EXTERNA");
+            System.out.println("8 -  LISTA INVERTIDA");
+            System.out.println("9 -  COMPACTAR BANCO");
+            System.out.println("10 - DESCOMPACTAR BANCO");
+            System.out.println("0 -  SAIR");
             entrada = sc.nextInt();
             if (entrada != 0)
               menu(entrada, arvore);
@@ -527,16 +552,17 @@ public class Main {
                 "=                   REGISTROS DA NETFLIX                    =");
             System.out.println(
                 "=============================================================");
-            System.out.println("1 - INCLUIR REGISTRO MANUALMENTE");
-            System.out.println("2 - INCLUIR REGISTROS COM ARQUIVO CSV");
-            System.out.println("3 - REMOVER REGISTRO");
-            System.out.println("4 - ATUALIZAR REGISTRO");
-            System.out.println("5 - PESQUISAR REGISTRO");
-            System.out.println("6 - IMPRIMIR AQUIVO INDEXADO");
-            System.out.println("7 - ORDENAÇÃO EXTERNA");
-            System.out.println("8 - LISTA INVERTIDA");
-            System.out.println("9 - COMPACTAR BANCO");
-            System.out.println("0 - SAIR");
+            System.out.println("1 -  INCLUIR REGISTRO MANUALMENTE");
+            System.out.println("2 -  INCLUIR REGISTROS COM ARQUIVO CSV");
+            System.out.println("3 -  REMOVER REGISTRO");
+            System.out.println("4 -  ATUALIZAR REGISTRO");
+            System.out.println("5 -  PESQUISAR REGISTRO");
+            System.out.println("6 -  IMPRIMIR AQUIVO INDEXADO");
+            System.out.println("7 -  ORDENAÇÃO EXTERNA");
+            System.out.println("8 -  LISTA INVERTIDA");
+            System.out.println("9 -  COMPACTAR BANCO");
+            System.out.println("10 - DESCOMPACTAR BANCO");
+            System.out.println("0 -  SAIR");
             entrada = sc.nextInt();
             if (entrada != 0)
               menu(entrada, hash);
@@ -560,4 +586,5 @@ public class Main {
  * Comedies
  * Action & Adventure
  * Horror Movies
+ * Banco/ArquivosDescompactadosLZW/DBDecompressV002.bin
  */

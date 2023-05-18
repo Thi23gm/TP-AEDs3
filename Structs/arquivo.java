@@ -702,4 +702,77 @@ public class arquivo {
         writer.close();
     }
 
+    public static void listarRegistros(String path) throws IOException {
+        int tamanhoRegistro, id;
+        boolean lapide;
+        RandomAccessFile arq = new RandomAccessFile(path, "r");// arbrir arquivo para leitura.
+
+        arq.seek(4);// pular os 4 bytes do cabeçalho do registro
+
+        filme f = null;
+
+        while (arq.getFilePointer() < arq.length()) {
+            tamanhoRegistro = arq.readInt();// 4 bytes
+            lapide = arq.readBoolean();// 1 byte
+            id = arq.readInt();// 4 bytes
+
+            if (lapide == false) {
+                f = new filme(lapide, id);
+
+                arq.readInt();// tamanho do Type
+                f.setType(arq.readUTF());// salvando o Type
+
+                arq.readInt();// tamanho do Name
+                f.setName(arq.readUTF());// salvando o Nome
+
+                arq.readInt();// tamanho do Director
+                f.setDirector(arq.readUTF()); // Sanvando o diretor
+
+                String s = "";
+                int aux = arq.readInt();// quantidade de pessoas do elenco
+                for (int i = 0; i < aux; i++) {
+                    arq.readInt();// tamanho do nome de cada pessoa do elenco
+                    s = s + arq.readUTF() + ",";
+                }
+                f.setCast(s.split(","));// salvando cada pessoa do elenco
+
+                arq.readInt();// tamanho do Country
+                f.setCountry(arq.readUTF()); // salvando o Country
+
+                arq.readInt();// tamanho da Data
+                f.setDateAdded(arq.readUTF());// salvando a data
+
+                f.setReleaseYear(arq.readInt());// salvando o ano de lançamento
+
+                arq.readInt();// tamanho do rating
+                f.setRating(arq.readUTF());// sanlvando o rating
+
+                f.setDuration(arq.readInt());// savlando a duração
+
+                String s1 = "";
+                int aux1 = arq.readInt();// quntidade de generos que tem o registro
+                for (int i = 0; i < aux1; i++) {
+                    arq.readInt();// tamanho de cada genero
+                    s1 = s1 + arq.readUTF() + ",";
+                }
+                f.setGenres(s1.split(","));// salvando cada genero
+
+                arq.readInt();// tamanho da descrição
+                f.setDescription(arq.readUTF());// salvando a descrição
+
+                BufferedWriter bw = new BufferedWriter(new FileWriter("saidas/saida.txt", true));
+                bw.append((f.getId()) + "\n" + "NOME: " + f.getName() + "\n" + "TIPO: " + f.getType() + "\n"
+                        + "DIRETOR: " + f.getDirector() + "\n" + "ELENCO: " + Arrays.toString(f.getCast()) + "\n"
+                        + "PAIS: " + f.getCountry() + "\n" + "DATA DE LANÇAMENTO: " + f.getDateAdded() + "\n"
+                        + "ANO DE LANÇAMENTO: " + f.getReleaseYear() + "\n" + "AVALIAÇÃO: " + f.getRating() + "\n"
+                        + "DURAÇÃO: " + f.getDuration() + "\n" + "GENEROS: " + Arrays.toString(f.getGenres()) + "\n"
+                        + "DESCRIÇÃO: " + f.getDescription() + "\n\n");
+                bw.close();// escrever na saida os dados dos filmes
+            } else {
+                arq.skipBytes(tamanhoRegistro - 5);// pular o tamanho do registro que é uma lapide - 5 bytes que ja foi
+                                                   // lido
+            }
+        }
+        arq.close();
+    }
 }
