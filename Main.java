@@ -3,6 +3,7 @@ import Structs.HashDinamico;
 import Structs.arquivo;
 import Structs.filme;
 import Structs.ordenacaoExterna;
+import Structs.CasamentoDePadroes.ForcaBruta;
 import Structs.Compressao.Huffman;
 import Structs.Compressao.LZW;
 
@@ -502,6 +503,34 @@ public class Main {
                             long tempoInicial4 = System.currentTimeMillis();
                             Huffman.decompress(versionUser2);
                             System.out.println("TEMPO TOTAL: \t" + (System.currentTimeMillis() - tempoInicial4) + "ms");
+                            break;
+                    }
+
+                    break;
+
+                case 11:
+                    System.out.println("DIGITE DE QUAL DOS ALGORITMOS VOCE DESEJA DESCOMPACTAR:");
+                    System.out.println("1 - FORÇA BRUTA");
+                    System.out.println("2 - KMP");
+                    int op5 = sc.nextInt();
+                    switch (op5) {
+                        case 1:
+                            String entrada2;
+                            System.out.println("DIGITE O PADRÃO QUE ESTÁ BUSCANDO");
+                            entrada2 = sc.nextLine();
+                            entrada2 = sc.nextLine();
+                            long tempoInicial5 = System.currentTimeMillis();
+                            List<filme> arr = ForcaBruta.pesquisar(entrada2);
+                            arquivo.listarCasamento(arr);
+                            System.out.println(
+                                    "CASAMENTO DE PADRÕES CONCLUIDO, SALVO NO ARQUIVO: saidas/saidaForcaBruta.txt");
+                            System.out.println("TEMPO TOTAL: \t" + (System.currentTimeMillis() - tempoInicial5) + "ms");
+                            break;
+
+                        case 2:
+                            String entrada3;
+                            System.out.println("DIGITE O PADRÃO QUE ESTÁ BUSCANDO");
+                            entrada3 = sc.nextLine();
                             break;
                     }
 
