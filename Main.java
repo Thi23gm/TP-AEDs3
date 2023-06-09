@@ -4,6 +4,7 @@ import Structs.arquivo;
 import Structs.filme;
 import Structs.ordenacaoExterna;
 import Structs.CasamentoDePadroes.ForcaBruta;
+import Structs.CasamentoDePadroes.KMP;
 import Structs.Compressao.Huffman;
 import Structs.Compressao.LZW;
 
@@ -280,7 +281,7 @@ public class Main {
 
                     break;
 
-                case 9:
+                    case 9:
                     System.out.println("DIGITE QUAL METODO VOCÊ QUER COMPACTAR:");
                     System.out.println("1 - LZW");
                     System.out.println("2 - HUFFMAN");
@@ -293,7 +294,10 @@ public class Main {
                                     .println("TEMPO TOTAL: \t" + (System.currentTimeMillis() - tempoInicial) + "ms");
                             break;
                         case 2:
-                            // chamar codigo para o HUFFMAN
+                            long tempoInicial2 = System.currentTimeMillis();
+                            Huffman.compress();
+                            System.out
+                                    .println("TEMPO TOTAL: \t" + (System.currentTimeMillis() - tempoInicial2) + "ms");
                             break;
                         default:
                             throw new InputMismatchException(op3 + " NÃO É VALIDO.");
@@ -301,11 +305,63 @@ public class Main {
                     break;
 
                 case 10:
-                    System.out.println("DIGITE A VERSÃO DO BANCO QUE DESEJA DESCOMPACTAR:");
-                    int versionUser = sc.nextInt();
-                    long tempoInicial2 = System.currentTimeMillis();
-                    LZW.decompress(versionUser);
-                    System.out.println("TEMPO TOTAL: \t" + (System.currentTimeMillis() - tempoInicial2) + "ms");
+                    System.out.println("DIGITE DE QUAL DOS ALGORITMOS VOCE DESEJA DESCOMPACTAR:");
+                    System.out.println("1 - LZW");
+                    System.out.println("2 - HUFFMAN");
+                    int op4 = sc.nextInt();
+                    switch (op4) {
+                        case 1:
+                            System.out.println("DIGITE A VERSÃO DO BANCO QUE DESEJA DESCOMPACTAR:");
+                            int versionUser = sc.nextInt();
+                            long tempoInicial3 = System.currentTimeMillis();
+                            LZW.decompress(versionUser);
+                            System.out.println("TEMPO TOTAL: \t" + (System.currentTimeMillis() - tempoInicial3) + "ms");
+                            break;
+
+                        case 2:
+                            System.out.println("DIGITE A VERSÃO DO BANCO QUE DESEJA DESCOMPACTAR:");
+                            int versionUser2 = sc.nextInt();
+                            long tempoInicial4 = System.currentTimeMillis();
+                            Huffman.decompress(versionUser2);
+                            System.out.println("TEMPO TOTAL: \t" + (System.currentTimeMillis() - tempoInicial4) + "ms");
+                            break;
+                    }
+
+                    break;
+
+                case 11:
+                    System.out.println("DIGITE DE QUAL DOS ALGORITMOS VOCE DESEJA BUSCAR O PADRÃO:");
+                    System.out.println("1 - FORÇA BRUTA");
+                    System.out.println("2 - KMP");
+                    int op5 = sc.nextInt();
+                    switch (op5) {
+                        case 1:
+                            String entrada2;
+                            System.out.println("DIGITE O PADRÃO QUE ESTÁ BUSCANDO");
+                            entrada2 = sc.nextLine();
+                            entrada2 = sc.nextLine();
+                            long tempoInicial5 = System.currentTimeMillis();
+                            List<filme> arr = ForcaBruta.pesquisar(entrada2);
+                            arquivo.listarCasamento(arr);
+                            System.out.println(
+                                    "CASAMENTO DE PADRÕES CONCLUIDO, SALVO NO ARQUIVO: saidas/saidaForcaBruta.txt");
+                            System.out.println("TEMPO TOTAL: \t" + (System.currentTimeMillis() - tempoInicial5) + "ms");
+                            break;
+
+                        case 2:
+                            String entrada3;
+                            System.out.println("DIGITE O PADRÃO QUE ESTÁ BUSCANDO");
+                            entrada3 = sc.nextLine();
+                            entrada3 = sc.nextLine();
+                            long tempoInicial6 = System.currentTimeMillis();
+                            List<filme> arr2 = KMP.buscarKPM(entrada3);
+                            arquivo.listarCasamento2(arr2);
+                            System.out.println(
+                                    "CASAMENTO DE PADRÕES CONCLUIDO, SALVO NO ARQUIVO: saidas/saidaKMP.txt");
+                            System.out.println("TEMPO TOTAL: \t" + (System.currentTimeMillis() - tempoInicial6) + "ms");
+                            break;
+                    }
+
                     break;
 
                 default:
@@ -509,7 +565,7 @@ public class Main {
                     break;
 
                 case 11:
-                    System.out.println("DIGITE DE QUAL DOS ALGORITMOS VOCE DESEJA DESCOMPACTAR:");
+                    System.out.println("DIGITE DE QUAL DOS ALGORITMOS VOCE DESEJA BUSCAR O PADRÃO:");
                     System.out.println("1 - FORÇA BRUTA");
                     System.out.println("2 - KMP");
                     int op5 = sc.nextInt();
@@ -531,6 +587,13 @@ public class Main {
                             String entrada3;
                             System.out.println("DIGITE O PADRÃO QUE ESTÁ BUSCANDO");
                             entrada3 = sc.nextLine();
+                            entrada3 = sc.nextLine();
+                            long tempoInicial6 = System.currentTimeMillis();
+                            List<filme> arr2 = KMP.buscarKPM(entrada3);
+                            arquivo.listarCasamento2(arr2);
+                            System.out.println(
+                                    "CASAMENTO DE PADRÕES CONCLUIDO, SALVO NO ARQUIVO: saidas/saidaKMP.txt");
+                            System.out.println("TEMPO TOTAL: \t" + (System.currentTimeMillis() - tempoInicial6) + "ms");
                             break;
                     }
 
@@ -585,6 +648,7 @@ public class Main {
                         System.out.println("8 -  LISTA INVERTIDA");
                         System.out.println("9 -  COMPACTAR BANCO");
                         System.out.println("10 - DESCOMPACTAR BANCO");
+                        System.out.println("11 - CASAMENTO DE PADRÃO");
                         System.out.println("0 -  SAIR");
                         entrada = sc.nextInt();
                         if (entrada != 0)
@@ -620,6 +684,7 @@ public class Main {
                         System.out.println("8 -  LISTA INVERTIDA");
                         System.out.println("9 -  COMPACTAR BANCO");
                         System.out.println("10 - DESCOMPACTAR BANCO");
+                        System.out.println("11 - CASAMENTO DE PADRÃO");
                         System.out.println("0 -  SAIR");
                         entrada = sc.nextInt();
                         if (entrada != 0)

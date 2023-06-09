@@ -890,4 +890,50 @@ public class arquivo {
     }
     writer.close(); // escrever na saida os dados dos filmes
   }
+
+  public static void listarCasamento2(List<filme> arr) throws IOException{
+    BufferedWriter writer = new BufferedWriter(
+        new FileWriter("saidas/saidaKMP.txt"));
+    for (int i = 0; i < arr.size(); i++) {
+      if (arr.get(i) != null) {
+        writer.append(
+            (arr.get(i).getId()) +
+                "\n" +
+                "NOME: " +
+                arr.get(i).getName() +
+                "\n" +
+                "TIPO: " +
+                arr.get(i).getType() +
+                "\n" +
+                "DIRETOR: " +
+                arr.get(i).getDirector() +
+                "\n" +
+                "ELENCO: " +
+                Arrays.toString(arr.get(i).getCast()) +
+                "\n" +
+                "PAIS: " +
+                arr.get(i).getCountry() +
+                "\n" +
+                "DATA DE LANÇAMENTO: " +
+                arr.get(i).getDateAdded() +
+                "\n" +
+                "ANO DE LANÇAMENTO: " +
+                arr.get(i).getReleaseYear() +
+                "\n" +
+                "AVALIAÇÃO: " +
+                arr.get(i).getRating() +
+                "\n" +
+                "DURAÇÃO: " +
+                arr.get(i).getDuration() +
+                "\n" +
+                "GENEROS: " +
+                Arrays.toString(arr.get(i).getGenres()) +
+                "\n" +
+                "DESCRIÇÃO: " +
+                arr.get(i).getDescription() +
+                "\n\n");
+      }
+    }
+    writer.close(); 
+  }
 }
