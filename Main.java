@@ -7,8 +7,10 @@ import Structs.CasamentoDePadroes.ForcaBruta;
 import Structs.CasamentoDePadroes.KMP;
 import Structs.Compressao.Huffman;
 import Structs.Compressao.LZW;
-
+import Structs.Criptografia.CifraDeFluxo;
+import Structs.Criptografia.RSA;
 import java.io.*;
+import java.security.*;
 import java.util.*;
 
 public class Main {
@@ -364,6 +366,42 @@ public class Main {
 
                     break;
 
+                    case 12:
+                        System.out.println("DIGITE QUAL É O TIPO DE CRIPTOGRAFIA QUE VOCÊ DESEJA IMPLEMENTAR:");
+                        System.out.println("1 - CIFRA DE FLUXO");
+                        System.out.println("2 - CRIPTOGRAFIA RSA");
+                        int n = sc.nextInt();
+                        switch(n){
+                            case 1: 
+                                filme filmeEncypt = registrarFilme();
+                                filmeEncypt = CifraDeFluxo.encryptFilme(filmeEncypt);
+                                System.out.println("CRIPTOGRAFANDO FILME..." + "\n");
+                                arquivo.salvarRegistroEncriptado(filmeEncypt);
+                                printFilme(filmeEncypt);
+                                System.out.println("FILME CRIPTOGRAFADO COM SUCESSO!" + "\n");
+                                Thread.sleep(2000);
+                                System.out.println("DESCRIPTOGRAFANDO FILME..." + "\n");
+                                printFilme(CifraDeFluxo.decryptFilme(filmeEncypt));
+                                System.out.println("FILME DESCRIPTOGRAFADO COM SUCESSO!");
+                            break;
+                            case 2:
+                                KeyPair keyPair = arquivo.generateKeyPair();
+                                PublicKey publicKey = keyPair.getPublic();
+                                PrivateKey privateKey = keyPair.getPrivate();
+                                filme filmeEncypt2 = registrarFilme();
+                                filmeEncypt2 = RSA.encryptFilme(filmeEncypt2, publicKey);
+                                System.out.println("CRIPTOGRAFANDO FILME..." + "\n");
+                                arquivo.salvarRegistroEncriptado2(filmeEncypt2);
+                                printFilme(filmeEncypt2);
+                                System.out.println("FILME CRIPTOGRAFADO COM SUCESSO!" + "\n");
+                                Thread.sleep(2000);
+                                System.out.println("DESCRIPTOGRAFANDO FILME..." + "\n");
+                                printFilme(RSA.decryptFilme(filmeEncypt2, privateKey));
+                                System.out.println("FILME DESCRIPTOGRAFADO COM SUCESSO!");
+                            break;
+                        }
+                    break;
+
                 default:
                     throw new InputMismatchException(entrada + " NÃO É VALIDO.");
             }
@@ -599,6 +637,43 @@ public class Main {
 
                     break;
 
+                    case 12:
+                        System.out.println("DIGITE QUAL É O TIPO DE CRIPTOGRAFIA QUE VOCÊ DESEJA IMPLEMENTAR:");
+                        System.out.println("1 - CIFRA DE FLUXO");
+                        System.out.println("2 - CRIPTOGRAFIA RSA");
+                        int n = sc.nextInt();
+                        switch(n){
+                            case 1: 
+                                filme filmeEncypt = registrarFilme();
+                                filmeEncypt = CifraDeFluxo.encryptFilme(filmeEncypt);
+                                System.out.println("CRIPTOGRAFANDO FILME..." + "\n");
+                                arquivo.salvarRegistroEncriptado(filmeEncypt);
+                                printFilme(filmeEncypt);
+                                System.out.println("FILME CRIPTOGRAFADO COM SUCESSO!" + "\n");
+                                Thread.sleep(2000);
+                                System.out.println("DESCRIPTOGRAFANDO FILME..." + "\n");
+                                printFilme(CifraDeFluxo.decryptFilme(filmeEncypt));
+                                System.out.println("FILME DESCRIPTOGRAFADO COM SUCESSO!");
+                            break;
+                            case 2:
+                                KeyPair keyPair = arquivo.generateKeyPair();
+                                PublicKey publicKey = keyPair.getPublic();
+                                PrivateKey privateKey = keyPair.getPrivate();
+                                filme filmeEncypt2 = registrarFilme();
+                                filmeEncypt2 = RSA.encryptFilme(filmeEncypt2, publicKey);
+                                System.out.println("CRIPTOGRAFANDO FILME..." + "\n");
+                                arquivo.salvarRegistroEncriptado2(filmeEncypt2);
+                                printFilme(filmeEncypt2);
+                                System.out.println("FILME CRIPTOGRAFADO COM SUCESSO!" + "\n");
+                                Thread.sleep(2000);
+                                System.out.println("DESCRIPTOGRAFANDO FILME..." + "\n");
+                                printFilme(RSA.decryptFilme(filmeEncypt2, privateKey));
+                                System.out.println("FILME DESCRIPTOGRAFADO COM SUCESSO!");
+                            break;
+                        }
+                    break;
+
+
                 default:
                     throw new InputMismatchException(entrada + " NÃO É VALIDO.");
             }
@@ -649,6 +724,7 @@ public class Main {
                         System.out.println("9 -  COMPACTAR BANCO");
                         System.out.println("10 - DESCOMPACTAR BANCO");
                         System.out.println("11 - CASAMENTO DE PADRÃO");
+                        System.out.println("12 - CRIPTOGRAFIA DE DADOS");
                         System.out.println("0 -  SAIR");
                         entrada = sc.nextInt();
                         if (entrada != 0)
@@ -685,6 +761,7 @@ public class Main {
                         System.out.println("9 -  COMPACTAR BANCO");
                         System.out.println("10 - DESCOMPACTAR BANCO");
                         System.out.println("11 - CASAMENTO DE PADRÃO");
+                        System.out.println("12 - CRIPTOGRAFIA DE DADOS");
                         System.out.println("0 -  SAIR");
                         entrada = sc.nextInt();
                         if (entrada != 0)

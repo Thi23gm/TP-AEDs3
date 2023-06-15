@@ -1,6 +1,9 @@
 package Structs;
 
 import java.io.*;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 public class arquivo {
@@ -936,4 +939,42 @@ public class arquivo {
     }
     writer.close(); 
   }
+
+  public static void salvarRegistroEncriptado(filme f) throws IOException{
+    byte[] ba;
+    RandomAccessFile arq = new RandomAccessFile("Banco/DBEncrypt.bin", "rw"); // Abre o arquivo para escrita.
+    arq.seek(arq.length()); // coloca o ponteiro na ultima posição do aquivo
+    ba = toByteArray(f); // transforma o filme em um array de bytes
+    arq.writeInt(ba.length); // Tamano do registro em bytes
+    arq.write(ba); // escreve os bytes no banco
+
+    arq.seek(0); // colocar o ponteiro no inicio do arquivo
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    DataOutputStream dos = new DataOutputStream(baos);
+    dos.writeInt(f.getId()); // pegar o ultimo id registrado
+    arq.write(baos.toByteArray()); // escrever no cabeçalho o ultimo id registrado
+    arq.close();
+  }
+
+  public static void salvarRegistroEncriptado2(filme f) throws IOException{
+    byte[] ba;
+    RandomAccessFile arq = new RandomAccessFile("Banco/DBEncrypt2.bin", "rw"); // Abre o arquivo para escrita.
+    arq.seek(arq.length()); // coloca o ponteiro na ultima posição do aquivo
+    ba = toByteArray(f); // transforma o filme em um array de bytes
+    arq.writeInt(ba.length); // Tamano do registro em bytes
+    arq.write(ba); // escreve os bytes no banco
+
+    arq.seek(0); // colocar o ponteiro no inicio do arquivo
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    DataOutputStream dos = new DataOutputStream(baos);
+    dos.writeInt(f.getId()); // pegar o ultimo id registrado
+    arq.write(baos.toByteArray()); // escrever no cabeçalho o ultimo id registrado
+    arq.close();
+  }
+
+  public static KeyPair generateKeyPair() throws NoSuchAlgorithmException {
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        keyPairGenerator.initialize(2048);
+        return keyPairGenerator.generateKeyPair();
+    }
 }
