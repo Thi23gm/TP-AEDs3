@@ -8,3 +8,5 @@ Trabalho pratico da materia de Algoritmos e Estruturas de Dados III - PUC Minas
 - Hash Dinâmico
 - Lista Invertida
 - Compressão LZW e Huffman
+- Casamento de Padrões Força Bruta e KMP
+- Criptografia RSA e Cifra de Fluxo
